@@ -21,18 +21,18 @@ def convert_to_fahrenheit(celsius_temp: float) -> int:
     temp = ( celsius_temp * 1.8 )+32
     return int(temp)
 
-def convert_fahrenheit_to_kelvin(fahrenheit_temp: float) -> float:
+def convert_fahrenheit_kelvin(fahrenheit_temp: float) -> float:
     temp = (convert_to_celsius(fahrenheit_temp) + 273.15)
     return temp
 
 def convert_celsius_kelvin(celsius_temp: float) -> float:
     return celsius_temp + 273.15
 
-def conver_kelvin_to_celsius(kelvin_temp: float) -> float:
+def convert_kelvin_to_celsius(kelvin_temp: float) -> float:
     return kelvin_temp - 273.15
 
 def convert_kelvin_to_fahrenheit(kelvin_temp: float) -> int:
-    return convert_to_fahrenheit(conver_kelvin_to_celsius(kelvin_temp))
+    return convert_to_fahrenheit(convert_kelvin_to_celsius(kelvin_temp))
 
 def temperature_tuple(temperatures: Iterable, input_unit_of_measurement: str, out_unit_of_measurement: str) -> Tuple[Tuple[float, float]]:
     """
@@ -55,7 +55,7 @@ def temperature_tuple(temperatures: Iterable, input_unit_of_measurement: str, ou
                 tup_of_temps =(temp_to_change,new_temp)
                 list_of_temp_tuples.append(tup_of_temps)
             elif out_unit_of_measurement == 'k':
-                new_temp = convert_fahrenheit_to_kelvin(temp_to_change)
+                new_temp = convert_fahrenheit_kelvin(temp_to_change)
                 tup_of_temps =(temp_to_change,new_temp)
                 list_of_temp_tuples.append(tup_of_temps)
 
@@ -71,7 +71,7 @@ def temperature_tuple(temperatures: Iterable, input_unit_of_measurement: str, ou
                 
         elif input_unit_of_measurement == 'k':
             if out_unit_of_measurement == 'c':
-                new_temp = conver_kelvin_to_celsius(temp_to_change)
+                new_temp = convert_kelvin_to_celsius(temp_to_change)
                 tup_of_temps =(temp_to_change,new_temp)
                 list_of_temp_tuples.append(tup_of_temps)
             elif out_unit_of_measurement == 'f':
